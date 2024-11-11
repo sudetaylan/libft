@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: staylan <staylan@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 12:04:57 by staylan           #+#    #+#             */
-/*   Updated: 2024/11/11 20:12:05 by staylan          ###   ########.fr       */
+/*   Created: 2024/10/29 18:35:44 by staylan           #+#    #+#             */
+/*   Updated: 2024/11/11 20:40:19 by staylan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (s[i])
+	while (i < len)
 	{
-		write(fd, &s[i], 1);
+		((unsigned char *)b)[i] = c;
 		i++;
 	}
+	return (b);
 }

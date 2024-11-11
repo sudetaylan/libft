@@ -1,25 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: staylan <staylan@student.42istanbul.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 12:04:57 by staylan           #+#    #+#             */
-/*   Updated: 2024/11/11 20:12:05 by staylan          ###   ########.fr       */
+/*   Created: 2024/10/27 16:08:26 by staylan           #+#    #+#             */
+/*   Updated: 2024/11/11 20:22:42 by staylan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	int	i;
+	size_t	i;
+	size_t	c;
+	size_t	b;
 
 	i = 0;
-	while (s[i])
+	c = ft_strlen(dst);
+	b = ft_strlen(src);
+	if (!dst || !src)
+		return (0);
+	if (dstsize <= c)
+		return (b + dstsize);
+	while (src[i] != '\0' && c + i < dstsize - 1)
 	{
-		write(fd, &s[i], 1);
+		dst[c + i] = src[i];
 		i++;
 	}
+	dst[c + i] = '\0';
+	return (b + c);
 }

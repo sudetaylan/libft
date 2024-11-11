@@ -1,20 +1,28 @@
-#include <unistd.h>
-void ft_putendl_fd(char *s, int fd)
-{
-    char c;
-    int i;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: staylan <staylan@student.42istanbul.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/11 12:04:47 by staylan           #+#    #+#             */
+/*   Updated: 2024/11/11 20:10:25 by staylan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-    c = '\n';
-    i = 0;
-    while (s[i] != '\0')
-    {
-        write(fd, &s[i], 1);
-        i++;  
-    }
-    write(fd, &c, 1);
-}
-int main()
+#include "libft.h"
+
+void	ft_putendl_fd(char *s, int fd)
 {
-    char *s = "merhaba";
-    ft_putendl_fd(s, 1);
+	char	c;
+	int		i;
+
+	c = '\n';
+	i = 0;
+	while (s[i] != '\0')
+	{
+		write(fd, &s[i], 1);
+		i++;
+	}
+	write(fd, &c, 1);
 }

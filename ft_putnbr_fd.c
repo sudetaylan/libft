@@ -1,28 +1,35 @@
-#include <unistd.h>
-void ft_putnbr_fd(int n, int fd)
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: staylan <staylan@student.42istanbul.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/11 12:04:52 by staylan           #+#    #+#             */
+/*   Updated: 2024/11/11 20:24:32 by staylan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
+
+void	ft_putnbr_fd(int n, int fd)
 {
-    char sign;
-  
-    if (n == -2147483648)
-        write(fd, "-2147483648", 11);
-    if (n < 0 && n != -2147483648)
-    {
-        sign = '-';
-        n = -n;
-        write (fd, &sign, 1);    
-    }
-    while (n >= 10)
-    {
-        ft_putnbr_fd(n / 10, 1);
-        n = n % 10;
-    }
-    while (n < 10 && n >= 0)
-    {
-        n = n + '0';
-        write(fd, &n, 1);        
-    }
-}
-int main()
-{
-    ft_putnbr_fd(23022005,1);
+	if (n == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+	else if (n < 0)
+	{
+		n = -n;
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd(n, fd);
+	}
+	else if (n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
+	else if (n < 10)
+	{
+		n = n + '0';
+		ft_putchar_fd(n, fd);
+	}
 }

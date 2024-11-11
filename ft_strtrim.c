@@ -1,33 +1,27 @@
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
-char *ft_strtrim(char const *s1, char const *set)
-{
-    size_t i;
-    size_t j;
-    size_t k;
-    size_t n;
-    char *new_str;
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: staylan <staylan@student.42istanbul.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/11 12:05:33 by staylan           #+#    #+#             */
+/*   Updated: 2024/11/11 20:17:39 by staylan          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-    i = 0;
-    j = 0;
-    n = strlen(set);
-    while (s1[i] == set[i])
-        i++;
-    k = strlen(s1) - 1;
-    while (s1[k] && set[--n] && s1[k] == set[n])
-        k--;
-    new_str = (char *)malloc(k - i + 2);
-    if (!new_str)
-        return 0;
-    while (i <= k)
-        new_str[j++] = s1[i++];
-    new_str[j] = '\0';
-    return(new_str);
-}
-int main()
+#include "libft.h"
+
+char	*ft_strtrim(char const *s1, char const *set)
 {
-    const char *s1 = "";
-    const char *set = "";
-    printf("%s",ft_strtrim(s1,set));
+	size_t	a;
+	size_t	b;
+
+	a = 0;
+	b = ft_strlen(s1);
+	while (a < b && ft_strchr(set, s1[a]))
+		a++;
+	while (a < b && ft_strchr(set, s1[b - 1]))
+		b--;
+	return (ft_substr(s1, a, b - a));
 }
